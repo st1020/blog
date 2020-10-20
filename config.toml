@@ -353,14 +353,7 @@ enableEmoji = true
       Mix = false
     #  评论系统设置
     [params.page.comment]
-      enable = true
-      # Gitalk 评论系统设置
-      [params.page.comment.gitalk]
-        enable = true
-        owner = "st1020"
-        repo = "BlogComment"
-        clientId = "eb330b23717cd7555155"
-        clientSecret = "e8b919f17c3d0a42853584eb95866e28779d3426"
+      enable = false
     #  第三方库配置
     [params.page.library]
       [params.page.library.css]
