@@ -26,7 +26,7 @@ $$ e^{i \pi}+1=0 $$
 - Learning...
 {{< /admonition >}}
 
-{{< admonition danger "兴趣爱好" true >}}
+{{< admonition tip "兴趣爱好" true >}}
 - 编程
 - 摄影
 - 阅读

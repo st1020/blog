@@ -603,7 +603,7 @@ plugins=(git sudo sublime colored-man-pages pip command-not-found safe-paste ext
 - 浏览器：FireFox
 - 下载：uGet
 - 下载：Aria2
-- 比特币钱包：Electron
+- 比特币钱包：Electrum
 - 网络抓包：Wireshark
 - 云盘：坚果云
 
