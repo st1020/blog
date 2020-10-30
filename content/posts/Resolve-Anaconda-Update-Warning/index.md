@@ -2,8 +2,8 @@
 title: "解决 Anaconda 使用清华源后更新时的警告"
 date: 2020-10-30T22:26:12+08:00
 draft: false
-categories: ["categorie"]
-tags: ["tag1", "tag2"]
+categories: ["计算机"]
+tags: ["Python", "Anaconda"]
 ---
 
 Anaconda 是一个免费开源的 Python 和 R 语言的发行版本，用于计算科学（数据科学、机器学习、大数据处理和预测分析），Anaconda 致力于简化包管理和部署。
