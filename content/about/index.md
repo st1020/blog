@@ -23,6 +23,7 @@ $$ e^{i \pi}+1=0 $$
 
 {{< admonition note "专业知识" true >}}
 - Python
+- C
 - Learning...
 {{< /admonition >}}
 
