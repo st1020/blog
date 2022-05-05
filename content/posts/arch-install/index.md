@@ -23,13 +23,13 @@ tags: ["Linux", "Arch"]
 
 ### 磁盘分区
 
-为了方便我直接在Windows下分好了分区，我的电脑有一块 SSD 和一块机械硬盘，我打算在SSD挂载`/`，在机械硬盘挂载`/home`。所以我分别在两块硬盘的末尾空余出了一段空间，留作Arch使用。
+为了方便我直接在Windows下分好了分区，我的电脑有一块 SSD 和一块机械硬盘，我打算在SSD挂载 `/` ，在机械硬盘挂载 `/home` 。所以我分别在两块硬盘的末尾空余出了一段空间，留作Arch使用。
 
 ## 开始安装
 
 ### U盘启动
 
-在 BIOS 或者 UEFI 中设置U盘为第一启动项，进入 Arch 菜单后选择`Boot Arch Linux (x86_64)`。
+在 BIOS 或者 UEFI 中设置U盘为第一启动项，进入 Arch 菜单后选择 `Boot Arch Linux (x86_64)` 。
 
 ### 检查引导方式
 
@@ -92,11 +92,11 @@ fdisk -l
 cfdisk /dev/sdx
 ```
 
-其中的`x`替换为你想要进行分区的硬盘，比如我就需要先执行`cfdisk /dev/sda`来处理 SSD ，然后再执行`cfdisk /dev/sdb`来处理机械硬盘。
+其中的 `x` 替换为你想要进行分区的硬盘，比如我就需要先执行 `cfdisk /dev/sda` 来处理 SSD ，然后再执行 `cfdisk /dev/sdb` 来处理机械硬盘。
 
 分区的过程比较简单，按照界面中的提示来就好，最后不要忘了保存。
 
-分区完成后再执行`fdisk -l`来确认一下分区信息。
+分区完成后再执行 `fdisk -l` 来确认一下分区信息。
 
 #### 格式化
 
@@ -106,17 +106,17 @@ cfdisk /dev/sdx
 mkfs.ext4 /dev/sdxY
 ```
 
-其中的 x y 替换为需要格式化的分区，比如`mkfs.ext4 /dev/sda1` 。
+其中的 x y 替换为需要格式化的分区，比如 `mkfs.ext4 /dev/sda1`  。
 
 #### 挂载分区
 
-使用以下命令将根分区挂载到`/mnt`：
+使用以下命令将根分区挂载到 `/mnt` ：
 
 ```bash
 mount /dev/sdxY /mnt
 ```
 
-如果你像我一样额外创建了`/home`分区，还需要执行以下操作：
+如果你像我一样额外创建了 `/home` 分区，还需要执行以下操作：
 
 ```bash
 mkdir /mnt/home
@@ -127,7 +127,7 @@ mounrt /dev/sdxY /mnt/home
 
 为了加快之后的软件包下载速度，我们需要先更换一下默认的镜像源。
 
-编辑`/etc/pacman.d/mirrorlist` 。
+编辑 `/etc/pacman.d/mirrorlist`  。
 
 ```bash
 nano /etc/pacman.d/mirrorlist
@@ -135,7 +135,7 @@ nano /etc/pacman.d/mirrorlist
 
 将你需要的镜像源剪切到文件的最上方，第一个镜像源将作为默认镜像源。
 
-对于 nano 编辑器，你可以使用`Ctrl+W`快捷键来搜索，`Alt+W`来继续搜索下一个，`Ctrl+K`来剪切一整行，`Ctrl+U`粘贴，最后使用`Ctrl+X`来退出。
+对于 nano 编辑器，你可以使用 `Ctrl+W` 快捷键来搜索， `Alt+W` 来继续搜索下一个， `Ctrl+K` 来剪切一整行， `Ctrl+U` 粘贴，最后使用 `Ctrl+X` 来退出。
 
 我推荐使用清华、浙大、中科大和网易的源。
 
@@ -154,7 +154,7 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 pacstrap /mnt base base-devel linux linux-firmware dhcpcd
 ```
 
-其中`base-devel`如果你不使用 AUR 源的话可以不安装。
+其中 `base-devel` 如果你不使用 AUR 源的话可以不安装。
 
 ## 基础配置
 
@@ -182,7 +182,7 @@ arch-chroot /mnt
 
 ### 配置时区
 
-使用以下命令将时区设置为东八区并生成`/etc/adjtime`文件：
+使用以下命令将时区设置为东八区并生成 `/etc/adjtime` 文件：
 
 ```bash
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -191,7 +191,7 @@ hwclock --systohc
 
 ### 本地化
 
-首先编辑`/etc/locale.gen`文件，这个文件中应该只有注释，我们需要把要使用的语言反注释（即去掉最前面的`#`），建议只选择带有 UTF-8 的语言，比如：
+首先编辑 `/etc/locale.gen` 文件，这个文件中应该只有注释，我们需要把要使用的语言反注释（即去掉最前面的 `#` ），建议只选择带有 UTF-8 的语言，比如：
 
 ```bash
 nano /etc/locale.gen
@@ -203,9 +203,9 @@ zh_CN.UTF-8 UTF-8
 zh_TW.UTF-8 UTF-8
 ```
 
-设置完成后，执行`locale-gen`生成 locale 信息。
+设置完成后，执行 `locale-gen` 生成 locale 信息。
 
-之后，我们需要编辑`/etc/locale.conf`来设置系统的默认语言。
+之后，我们需要编辑 `/etc/locale.conf` 来设置系统的默认语言。
 
 ```bash
 /etc/locale.conf
@@ -219,14 +219,14 @@ LANG=en_US.UTF-8
 
 {{< admonition info >}}
 #### 注意
-不建议在这里直接设置为`zh_CN.UTF-8` ，会造成 TTY 乱码以及一些log文件输出错误。
+不建议在这里直接设置为 `zh_CN.UTF-8`  ，会造成 TTY 乱码以及一些log文件输出错误。
 {{< /admonition >}}
 
 ### 设置主机名
 
-编辑`/etc/hostname`并在里面输入你的主机名。
+编辑 `/etc/hostname` 并在里面输入你的主机名。
 
-然后编辑`/etc/hosts`，输入以下内容（将myhostname替换为你的主机名）：
+然后编辑 `/etc/hosts` ，输入以下内容（将myhostname替换为你的主机名）：
 
 ```
 127.0.0.1	localhost
@@ -236,7 +236,7 @@ LANG=en_US.UTF-8
 
 ### 设置Root密码
 
-为了安全，我们需要为`root`账户设定一个密码，直接输入以下命令，并输入两次**不可见的**密码，就设置好了。
+为了安全，我们需要为 `root` 账户设定一个密码，直接输入以下命令，并输入两次**不可见的**密码，就设置好了。
 
 ```bash
 passwd
@@ -264,7 +264,7 @@ grub-install --target=i386-pc /dev/sdx
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-注意：其中的`sdx`应该是你的`/`（根目录）所在硬盘（不是分区，是硬盘！）。
+注意：其中的 `sdx` 应该是你的 `/` （根目录）所在硬盘（不是分区，是硬盘！）。
 
 #### EFI/GPT
 
@@ -296,7 +296,7 @@ nano /boot/grub/grub.cfg
 pacman -S nano vim dialog wpa_supplicant ntfs-3g networkmanager
 ```
 
-如果你是 Intel CPU 建议额外安装`intel-ucode`来安装 Intel 微代码固件。
+如果你是 Intel CPU 建议额外安装 `intel-ucode` 来安装 Intel 微代码固件。
 
 ```bash
 pacman -S intel-ucode
@@ -357,7 +357,7 @@ mkswap /swapfile
 swapon /swapfile
 ```
 
-最后编辑`/etc/fstab`在开机时挂载交换文件：
+最后编辑 `/etc/fstab` 在开机时挂载交换文件：
 
 ```bash
 nano /etc/fstab
@@ -371,13 +371,13 @@ nano /etc/fstab
 
 ### 新建用户
 
-直接使用`root`账户作为默认账户是很不安全的，没准手一抖输入了个`rm -rf /`就和全部数据说拜拜了。并且很多软件都是禁止在`root`环境下执行的，比如安装 AUR 源中的软件时必须的`makepkg`命令。所以我们要创建一个低权限账户作为日常使用的账户。使用以下命令创建一个账户：
+直接使用 `root` 账户作为默认账户是很不安全的，没准手一抖输入了个 `rm -rf /` 就和全部数据说拜拜了。并且很多软件都是禁止在 `root` 环境下执行的，比如安装 AUR 源中的软件时必须的 `makepkg` 命令。所以我们要创建一个低权限账户作为日常使用的账户。使用以下命令创建一个账户：
 
 ```bash
 useradd -m -G wheel username
 ```
 
-上面的命令表示创建一个名为 username 的账户，加入 wheel 用户组，并为其创建一个用户主目录`/home/username` 。
+上面的命令表示创建一个名为 username 的账户，加入 wheel 用户组，并为其创建一个用户主目录 `/home/username`  。
 
 之后执行以下命令设置密码。
 
@@ -387,15 +387,15 @@ passwd username
 
 ### 配置sudo
 
-如果我们要在低权限账户中执行一些特权操作，该怎么办呢，很简单，直接输入`su`命令即可切换到`root`账户，执行完后再输入`exit`即可返回，但是这样多少有些麻烦，我们可以用`sudo`命令来简化这一步骤。
+如果我们要在低权限账户中执行一些特权操作，该怎么办呢，很简单，直接输入 `su` 命令即可切换到 `root` 账户，执行完后再输入 `exit` 即可返回，但是这样多少有些麻烦，我们可以用 `sudo` 命令来简化这一步骤。
 
-首先安装`sudo`：
+首先安装 `sudo` ：
 
 ```bash
 pacman -S sudo
 ```
 
-然后为了配置`sudo `，需要先设置一个默认编辑器，比如 nano 或者 vim：
+然后为了配置 `sudo ` ，需要先设置一个默认编辑器，比如 nano 或者 vim：
 
 ```bash
 export EDITOR=nano
@@ -408,9 +408,9 @@ export EDITOR=vim
 visudo
 ```
 
-找到`# %wheel ALL=(ALL)ALL`这行，并反注释掉。
+找到 `# %wheel ALL=(ALL)ALL` 这行，并反注释掉。
 
-这表示允许wheel用户组的全部用户使用`sudo`执行一切命令，当然，需要输入密码。
+这表示允许wheel用户组的全部用户使用 `sudo` 执行一切命令，当然，需要输入密码。
 
 ### 安装图像界面
 
@@ -468,22 +468,22 @@ sudo systemctl enable sddm
 
 #### 重启进入图形化界面
 
-最后我们只要运行`reboot`重启即可进入图形化界面了！
+最后我们只要运行 `reboot` 重启即可进入图形化界面了！
 
 ## 开始使用
 
 ### 配置 pacman
 
-pacman 是 Arch 默认的包管理器，它有许多可自定义的选项，可以通过编辑`/etc/pacman.conf`进行修改，我进行的配置如下：
+pacman 是 Arch 默认的包管理器，它有许多可自定义的选项，可以通过编辑 `/etc/pacman.conf` 进行修改，我进行的配置如下：
 
--  启用彩色输出：反注释`Color`
--  升级前对比版本：反注释`VerbosePkgLists`
+-  启用彩色输出：反注释 `Color` 
+-  升级前对比版本：反注释 `VerbosePkgLists` 
 
 ### 使用 ArchlinuxCN
 
-Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。包含中文用户常用软件、工具、字体/美化包等。我们可以通过编辑 `/etc/pacman.conf` 来添加它。
+Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。包含中文用户常用软件、工具、字体/美化包等。我们可以通过编辑  `/etc/pacman.conf`  来添加它。
 
-在 `/etc/pacman.conf` 文件末尾添加以下两行：
+在  `/etc/pacman.conf`  文件末尾添加以下两行：
 
 ```
 [archlinuxcn]
@@ -497,10 +497,10 @@ Server = https://repo.archlinuxcn.org/$arch
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ```
 
-之后安装 `archlinuxcn-keyring` 包导入 GPG key。
+之后安装  `archlinuxcn-keyring`  包导入 GPG key。
 
 {{< admonition info "提示">}}
-如果安装 `archlinuxcn-keyring ` 失败的话可以在`/etc/pacman.conf`最后面添加：
+如果安装  `archlinuxcn-keyring `  失败的话可以在 `/etc/pacman.conf` 最后面添加：
 
 ```
 SigLevel = Optional TrustAll
@@ -512,7 +512,7 @@ SigLevel = Optional TrustAll
 
 [Arch 用户软件仓库](https://aur.archlinux.org/)（Arch User Repository，AUR）是为用户而建、由用户主导的 Arch 软件仓库。提供了大量官方包之外的软件包，可以说它是 Arch 的灵魂之一，几乎所有 Linux 上有的软件都可以在它里面找到。
 
-要安装 AUR 中的软件，基本操作是在 [AUR](https://aur.archlinux.org/) 中搜索软件，然后使用`git`克隆源码，再使用`makepkg`生成安装包，最后使用`pacman -U xxx.tar.gz`安装包。这显然是很麻烦的，所以我们可以使用一些 AUR 助手（AUR helpers）来帮助我们安装，目前最为常用的是 yay 。
+要安装 AUR 中的软件，基本操作是在 [AUR](https://aur.archlinux.org/) 中搜索软件，然后使用 `git` 克隆源码，再使用 `makepkg` 生成安装包，最后使用 `pacman -U xxx.tar.gz` 安装包。这显然是很麻烦的，所以我们可以使用一些 AUR 助手（AUR helpers）来帮助我们安装，目前最为常用的是 yay 。
 
 如果你添加了 ArchlinuxCN 源的话可以直接安装 yay 。
 
@@ -528,7 +528,7 @@ cd yay
 makepkg -si
 ```
 
-`yay` 兼容所有 `pacman` 的命令行，你可以直接像使用`pacman`一样使用它。
+ `yay`  兼容所有  `pacman`  的命令行，你可以直接像使用 `pacman` 一样使用它。
 
 如果 AUR 源访问较慢，也可以使用以下命令切换到清华大学开源软件镜像站提供的镜像源。
 
@@ -562,7 +562,7 @@ sudo pacman -S fcitx-lilydjwg-git fcitx-sogoupinyin fcitx-qt5
 sudo pacman -S kcm-fcitx
 ```
 
-安装完成后需要修改`/etc/profile`文件，在文件开头添加：
+安装完成后需要修改 `/etc/profile` 文件，在文件开头添加：
 
 ```
 export XMODIFIERS="@im=fcitx"

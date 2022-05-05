@@ -18,26 +18,30 @@ $$ e^{i \pi}+1=0 $$
 - 学生
 - 热爱生活 热爱科技
 - Github：<https://github.com/st1020>
-- Wikidot：<http://st1020.wikidot.com>
 {{< /admonition >}}
 
 {{< admonition note "专业知识" true >}}
 - Python
 - C
+- TypeScript / JavaScript
 - Learning...
 {{< /admonition >}}
 
 {{< admonition tip "兴趣爱好" true >}}
 - 编程
-- 摄影
-- 阅读
+
 - 动漫
+
 - 科幻
+
+- 摄影
+
+- 阅读
 {{< /admonition >}}
 
-{{< admonition success "完成项目" true >}}
-- [Stone Termux管理工具 (Stone-Termux-Tool)](https://github.com/st1020/Stone-Termux-Tool)
-- [Termux-Arch](https://github.com/st1020/Termux-Arch)
-- [Lcmt (A Linux Container Manager On Termux)](https://github.com/st1020/Lcmt)
+{{< admonition success "正在进行的项目" true >}}
+- [AliceBot](https://github.com/st1020/alicebot)
+- [Sophia-doc](https://github.com/st1020/sophia-doc)
+- [Lucy](https://github.com/st1020/lucy)
 - Doing...
 {{< /admonition >}}
