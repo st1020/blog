@@ -2,7 +2,7 @@
 title: "Python 异步IO实用教程"
 date: 2021-08-10T09:39:24+08:00
 draft: false
-categories: ["计算机"]
+categories: ["Python"]
 tags: ["python", "asyncio"]
 ---
 

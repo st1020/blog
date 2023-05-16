@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://st1020.com/"
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "github.com/st1020/LikeIt"
@@ -38,7 +38,7 @@ min = "0.93.0"
 [author]
 name = "st1020"
 email = "stone_1020@qq.com"
-link = "https://st1020.top/"
+link = "https://st1020.com/"
 
 # 菜单配置
 [menu]

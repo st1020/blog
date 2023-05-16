@@ -2,7 +2,7 @@
 title: Hello World
 date: 2020-04-06T12:09:51+08:00
 draft: false
-categories: ["Hexo"]
+categories: ["杂谈"]
 tags: ["Blog"]
 ---
 

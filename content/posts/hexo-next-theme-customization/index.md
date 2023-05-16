@@ -1,18 +1,18 @@
 ---
 title: Hexo-NexT 主题个性化定制
 date: 2020-04-09T10:32:14+08:00
-categories: ["Hexo"]
+categories: ["前端"]
 tags: ["Hexo", "Blog"]
 ---
 
-本篇文章主要谈一谈我是如何个性化定制 Hexo 的NexT 主题的。
+本篇文章主要谈一谈我是如何个性化定制 Hexo 的 NexT 主题的。
 
 Hexo 的主题有许多种，其中最知名的莫过于 NexT 主题了，我也选择了这款主题作为我的博客的默认主题。实际上，我本来是打算使用 Hugo 来搭建博客的，但苦于没有找到喜欢的主题，只好作罢。如果未来找到了足够好的主题，我应该会将博客迁移到 Hugo 上吧。本篇也是作为我折腾 Hexo 的一篇记录。
 
 <!--more-->
 
 {{< admonition warning "注意">}}
-自2020年7月15日起，本博客已经由 Hexo 迁移到了 Hugo，本文部分内容已经不适用了，你可以点击[这里](hexo.zip)下载本博客最后版本的 Hexo 源码。
+自 2020 年 7 月 15 日起，本博客已经由 Hexo 迁移到了 Hugo，本文部分内容已经不适用了。
 {{< /admonition >}}
 
 {{< admonition >}}
@@ -71,7 +71,7 @@ moon_menu:
 
 其中提供了一个简繁转换的脚本，我在此基础上做了一点修改，功能上应该是相同的，可以点击[这里](http://st1020.top/hexo-next-theme-customization/tw_cn.js)下载，如果想要下载原脚本的话可以访问上面的网站。
 
-首先下载上面的脚本，放在 `/source/js/tw_cn.js`  。
+首先下载上面的脚本，放在 `/source/js/tw_cn.js` 。
 
 然后我们需要修改 `主题的配置文件` ，找到其中的 `custom_file_path:` 选项，把下面这行反注释：
 
@@ -82,11 +82,13 @@ footer: source/_data/footer.swig
 然后新建 `/source/_data/footer.swig` 文件，写入：
 
 ```html
-<div class="translate-style">繁/简：<a id="translateLink" href="javascript:translatePage();">繁体</a></div>
+<div class="translate-style">
+  繁/简：<a id="translateLink" href="javascript:translatePage();">繁体</a>
+</div>
 <script type="text/javascript" src="/js/tw_cn.js"></script>
 ```
 
-这相当于在每个网页的 `footer` 部分都添加了上面两行 HTML 代码，第一行表示创建一个 `<div>`  ，里面包含两部分，一部分是文字 `繁/简：`  ，另一部分是一个超链接， `id` 为 `"translateLink"`  ，点击后会运行 JS 函数 `translatePage()`  ，第二行就是引入 `/js/tw_cn.js` 脚本。
+这相当于在每个网页的 `footer` 部分都添加了上面两行 HTML 代码，第一行表示创建一个 `<div>` ，里面包含两部分，一部分是文字 `繁/简：` ，另一部分是一个超链接， `id` 为 `"translateLink"` ，点击后会运行 JS 函数 `translatePage()` ，第二行就是引入 `/js/tw_cn.js` 脚本。
 
 如果你使用的是原来的 JS 脚本而非我修改的那个的话，还需要按照上面的地址中的教程添加一些配置项，如果是用我修改的那个话就什么都不用做了。
 
@@ -113,29 +115,28 @@ NexT 主题是自带了夜间模式支持的，但是只支持根据系统的夜
   --content-bg-color: $content-bg-color;
   --card-bg-color: $card-bg-color;
   --text-color: $text-color;
-  ...
+  ...;
 }
 
-if (hexo-config('darkmode')) {
+if (hexo-config("darkmode")) {
   @media (prefers-color-scheme: dark) {
     :root {
       --body-bg-color: $body-bg-color-dark;
       --content-bg-color: $content-bg-color-dark;
       --card-bg-color: $card-bg-color-dark;
       --text-color: $text-color-dark;
-      ...
+      ...;
     }
 
     img {
-      opacity: .75;
+      opacity: 0.75;
 
       &:hover {
-        opacity: .9;
+        opacity: 0.9;
       }
     }
   }
 }
-
 ```
 
 上面的 CSS 代码使用了 `:root` 选择器 `@media` 查询，当浏览器配置为 `prefers-color-scheme: dark` 时便会设置为夜间模式的配色，并且设置图片透明度增加，不过需要注意的是，我们并不能直接使用上面的代码，因为后面对应的并非颜色，而是变量，会在渲染时替换为颜色，我们可以在 `/theme/next/source/css/_variables/base.styl` 中找到变量对应的颜色，不过手动替换太麻烦了，我选择在 `主题配置文件` 中设置 `darkmode: true` ，运行 `hexo g` 生成静态文件，然后在 `/public/css/main.css` 中找到需要的 CSS 代码，得到的代码如下：
@@ -182,7 +183,12 @@ head: source/_data/head.swig
 然后新建 `/source/_data/head.swig` 文件，写入：
 
 ```html
-<link href="/css/dark.css" rel="alternate stylesheet" type="text/css" title="dark">
+<link
+  href="/css/dark.css"
+  rel="alternate stylesheet"
+  type="text/css"
+  title="dark"
+/>
 <script type="text/javascript" src="/js/darkmode.js"></script>
 ```
 
@@ -195,46 +201,50 @@ head: source/_data/head.swig
 首先我们来实现手动切换部分。我们可以使用以下代码来启用或禁用 `dark.css` ：
 
 ```javascript
-//启用夜间模式
+// 启用夜间模式
 document.querySelector('link[title="dark"]').disabled = true;
 document.querySelector('link[title="dark"]').disabled = false;
 ```
 
 ```javascript
-//关闭夜间模式
+// 关闭夜间模式
 document.querySelector('link[title="dark"]').disabled = false;
 ```
 
 然后我们可以写一个函数实现切换功能：
 
 ```javascript
-var night = 0
-function switchDarkMode(){
-    if(night == 0){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-        var night = 1
-    }else{
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.cookie = "dark=0;path=/"
-        var night = 0
-    }
+var night = 0;
+function switchDarkMode() {
+  if (night == 0) {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+    var night = 1;
+  } else {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.cookie = "dark=0;path=/";
+    var night = 0;
+  }
 }
 ```
 
 但是上面的函数有一个问题，那就是只能在一个页面生效，当读者刷新了页面或这访问了其他的页面后就又会恢复为亮色模式了。那么有什么办法能够在整个网站中传递信息呢，很简单，那就是 cookie 。我们可以通过设置 cookie 来实现对整个网站设置夜间模式，修改后的代码如下：
 
 ```javascript
-function switchDarkMode(){
-    var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-    if(night == '0'){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-        document.cookie = "dark=1;path=/"
-    }else{
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.cookie = "dark=0;path=/"
-    }
+function switchDarkMode() {
+  var night =
+    document.cookie.replace(
+      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    ) || "0";
+  if (night == "0") {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+    document.cookie = "dark=1;path=/";
+  } else {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.cookie = "dark=0;path=/";
+  }
 }
 ```
 
@@ -254,14 +264,23 @@ moon_menu:
 首先，手动切换的优先级肯定是要高于自动切换的，那么我们就要首先判断是否定义了 cookie ，如果定义了就使用定义的，没定义就判断时间和系统情况。注意，由于我们在上面设置 cookie 时没有设置持续时间，cookie 是会在浏览器会话结束后自动清除的。代码如下：
 
 ```javascript
-if(document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == ''){
-    //判断时间和系统情况
-    }
-}else{
-    if(document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == '1'){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-    }
+if (
+  document.cookie.replace(
+    /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  ) == ""
+) {
+  // 判断时间和系统情况
+} else {
+  if (
+    document.cookie.replace(
+      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    ) == "1"
+  ) {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+  }
 }
 ```
 
@@ -271,18 +290,18 @@ if(document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") 
 
 ```css
 html {
-  content: ""; 
+  content: "";
 }
 /* Light mode */
 @media (prefers-color-scheme: light) {
   html {
-      content: "light";
+    content: "light";
   }
 }
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   html {
-      content: "dark";
+    content: "dark";
   }
 }
 ```
@@ -290,35 +309,57 @@ html {
 上面的代码会在渲染静态页面时插入到 `/css/main.css` 中，它会使用 `@media` 判断系统的 `prefers-color-scheme` 并设置 html 的 `content` 属性， `content` 属性有一些特殊用法，但这里我们没有用到，可以姑且认为 `content` 属性在这里不会对页面的显示样式产生任何影响，只是起到了传递信息的作用，我们可以使用 JS 读出这一属性并保存为常量，代码如下：
 
 ```javascript
-const mode = getComputedStyle(document.documentElement).getPropertyValue('content');
+const mode = getComputedStyle(document.documentElement).getPropertyValue(
+  "content"
+);
 ```
 
 最后完整的 `dark.js` 代码如下：
 
 ```javascript
-const mode = getComputedStyle(document.documentElement).getPropertyValue('content');
-if(document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == ''){
-    if(mode == '"dark"' || new Date().getHours() > 22 || new Date().getHours() < 6){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-    }
-}else{
-    if(document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == '1'){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-    }
+const mode = getComputedStyle(document.documentElement).getPropertyValue(
+  "content"
+);
+if (
+  document.cookie.replace(
+    /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  ) == ""
+) {
+  if (
+    mode == '"dark"' ||
+    new Date().getHours() > 22 ||
+    new Date().getHours() < 6
+  ) {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+  }
+} else {
+  if (
+    document.cookie.replace(
+      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    ) == "1"
+  ) {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+  }
 }
 
-function switchDarkMode(){
-    var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-    if(night == '0'){
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.querySelector('link[title="dark"]').disabled = false;
-        document.cookie = "dark=1;path=/"
-    }else{
-        document.querySelector('link[title="dark"]').disabled = true;
-        document.cookie = "dark=0;path=/"
-    }
+function switchDarkMode() {
+  var night =
+    document.cookie.replace(
+      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    ) || "0";
+  if (night == "0") {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.querySelector('link[title="dark"]').disabled = false;
+    document.cookie = "dark=1;path=/";
+  } else {
+    document.querySelector('link[title="dark"]').disabled = true;
+    document.cookie = "dark=0;path=/";
+  }
 }
 ```
 
@@ -336,50 +377,55 @@ function switchDarkMode(){
 
 ```html
 <div class="links-of-blogroll motion-element">
-	<div class="links-of-blogroll-title" id="hitotitle">
-		<i class="fa fa-paragraph"></i>
-		<b>一言</b>
-	</div>
-	<p id="hitokoto" style="padding: 0; margin: 0;">:D 获取中...</p>
-	<p id="hitofrom" style="font-style: italic; text-align: right; padding: 0; margin: 0;">:D 获取中...</p>
-	<script>
-		if(CONFIG.page.isHome){
-			fetch('https://v1.hitokoto.cn')
-			.then(response => response.json())
-			.then(data => {
-				const hitokoto = document.getElementById('hitokoto')
-				const hitofrom = document.getElementById('hitofrom')
-				hitokoto.innerText = data.hitokoto
-				hitofrom.innerText = '——' + data.from
-			})
-			.catch(console.error)
-		}else{
-			document.getElementById('hitokoto').style.display ="none";
-			document.getElementById('hitofrom').style.display ="none";
-			document.getElementById('hitotitle').style.display ="none";
-		}
-	</script>
+  <div class="links-of-blogroll-title" id="hitotitle">
+    <i class="fa fa-paragraph"></i>
+    <b>一言</b>
+  </div>
+  <p id="hitokoto" style="padding: 0; margin: 0;">:D 获取中...</p>
+  <p
+    id="hitofrom"
+    style="font-style: italic; text-align: right; padding: 0; margin: 0;"
+  >
+    :D 获取中...
+  </p>
+  <script>
+    if (CONFIG.page.isHome) {
+      fetch("https://v1.hitokoto.cn")
+        .then((response) => response.json())
+        .then((data) => {
+          const hitokoto = document.getElementById("hitokoto");
+          const hitofrom = document.getElementById("hitofrom");
+          hitokoto.innerText = data.hitokoto;
+          hitofrom.innerText = "——" + data.from;
+        })
+        .catch(console.error);
+    } else {
+      document.getElementById("hitokoto").style.display = "none";
+      document.getElementById("hitofrom").style.display = "none";
+      document.getElementById("hitotitle").style.display = "none";
+    }
+  </script>
 </div>
 ```
 
 我设置为了仅在博客的首页显示，如果你需要在博客所有页面都显示的话可以将 `<script>` 部分更换为以下代码：
 
 ```html
-	<script>
-        fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            const hitokoto = document.getElementById('hitokoto')
-            const hitofrom = document.getElementById('hitofrom')
-            hitokoto.innerText = data.hitokoto
-            hitofrom.innerText = '——' + data.from
-        })
-        .catch(console.error)
-	</script>
+<script>
+  fetch("https://v1.hitokoto.cn")
+    .then((response) => response.json())
+    .then((data) => {
+      const hitokoto = document.getElementById("hitokoto");
+      const hitofrom = document.getElementById("hitofrom");
+      hitokoto.innerText = data.hitokoto;
+      hitofrom.innerText = "——" + data.from;
+    })
+    .catch(console.error);
+</script>
 ```
 
 ## 最后
 
-你可能发现我的博客样式几乎就是 NexT 的 Gemini 主题的默认样式，并没有做什么更改。是的，我没有添加华丽的鼠标特效或是live2D的二次元看板娘，没有设置好听的背景音乐和特别的背景特效，甚至于连背景图片和字体都没有换。其实这都是因为我非常喜欢简约的风格，我认为博客最重要的是其内容，而主题的作用就是突出内容和帮助呈现内容，如果太过华丽就喧宾夺主了。我一直认为，最好的科技应该让人们察觉不到其存在，好的设计应该让人用起来很舒服，一切都是自然而然的，就像使用自己的四肢一样自然。
+你可能发现我的博客样式几乎就是 NexT 的 Gemini 主题的默认样式，并没有做什么更改。是的，我没有添加华丽的鼠标特效或是 live2D 的二次元看板娘，没有设置好听的背景音乐和特别的背景特效，甚至于连背景图片和字体都没有换。其实这都是因为我非常喜欢简约的风格，我认为博客最重要的是其内容，而主题的作用就是突出内容和帮助呈现内容，如果太过华丽就喧宾夺主了。我一直认为，最好的科技应该让人们察觉不到其存在，好的设计应该让人用起来很舒服，一切都是自然而然的，就像使用自己的四肢一样自然。
 
 其实如果你细心观察的话，这个博客还是有一些自定义配置的，比如上面提到的简繁转换、夜间模式和首页的一言，还有 NexT 提供的网页顶部的阅读进度条、右上角会自动保存也能手动设置的书签、文章标题旁边的页面 Markdown 源码入口、点击图片后弹出的 FancyBox、延迟加载图片和自动缓存接下来的页面，以及由各种插件提供的右下角显示阅读进度百分比的悬浮菜单、侧边栏中的搜索功能、文章标题下面的字数统计和阅读时长、文章底部的 Gitalk 的评论。它们都是些不起眼的小功能，但都确确实实地方便了博客的浏览，这才是我需要的博客个性化配置。
