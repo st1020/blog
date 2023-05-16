@@ -14,14 +14,14 @@ tags: ["python", "asyncio"]
 
 如果我们希望一个代码能够并发执行，有这几种方式，多进程，多线程和协程，它们在 Python 中分别对应了 [multiprocessing](https://docs.python.org/zh-cn/3/library/multiprocessing.html)， [threading](https://docs.python.org/zh-cn/3/library/threading.html) 和 [asyncio](https://docs.python.org/zh-cn/3/library/asyncio.html) 库，在历史上，进程曾是大部分分时系统中程序运行的基本单位，而在现代操作系统中，进程是线程的容器。通俗的来讲，系统中运行的每一个程序都是一个进程，而每个进程有包含多个线程。每个线程都可以并行运行。
 
-{{< mermaid >}}
+```mermaid
 graph TD;
     操作系统-->进程1;
     操作系统-->进程2;
     进程1-->线程1-1;
     进程1-->线程1-2;
     进程2-->线程2-1;
-{{< /mermaid >}}
+```
 
 但是，实际上它们真的在并行运行吗？答案是不确定的，这取决于 CPU 的核心数，在“远古”时代，CPU 只有一个核心，所以在物理层面上，进程与线程并没有办法并行执行，于是操作系统用一个方法“骗过”了用户，通过快速地切换运行的进程来产生一种它们正在并行运行的错觉，所以如果你的电脑只有一个核心，并且你的程序只涉及单纯的 CPU 计算，那么多线程或多进程并不会提高运行的效率，反而可能会因为调度过程中的损耗而浪费部分 CPU 资源。但好在现在的 CPU 都有多个核心了，每个线程可以在独立的 CPU 上运行，所以多线程技术可以显著加快计算的速度。不过 Python 语言的最常用实现 CPython 由于 GIL 的存在，并不能很好的利用多线程，所以对于 CPU 密集型的程序需要使用多进程代替多线程。
 
@@ -194,7 +194,7 @@ asyncio.run(main())
 
 我们可以用下图清晰地表示使用多线程和协程任务进行并发处理的不同：
 
-{{< mermaid >}}
+```mermaid
 gantt
     dateFormat  DD
     axisFormat  %d
@@ -212,8 +212,9 @@ gantt
     网络请求    :crit, done,   task31, 03, 1d
     等待响应    :      active, task32, after task31, 15d
     处理响应    :crit, done,   task33, after task32, 1d
-{{< /mermaid >}}
-{{< mermaid >}}
+```
+
+```mermaid
 gantt
     dateFormat  DD
     axisFormat  %d
@@ -231,7 +232,7 @@ gantt
     网络请求    :crit, done,   task31, 01, 1d
     等待响应    :      active, task32, after task31, 15d
     处理响应    :crit, done,   task33, after task32, 1d
-{{< /mermaid >}}
+```
 
 看上面的图，你可能觉得还是多线程效率更高些，但事实并非如此，首先，上面的图并非真实的比例，真实情况下，等待响应的时间会远远大于网络请求和处理响应的时间，上面的差距可以忽略不计。其次，上面的图有一个前提就是线程/进程数小于 CPU 核心数，若大于的话也并不会进一步提高效率，往往并行 IO 操作数量都是大于用户的 CPU 核心数的。最后，切换进程是会耗费额外的资源的，相比之下，协程切换任务的消耗则要小一些。
 
@@ -243,12 +244,12 @@ gantt
 
 2. **可等待对象**
 
-   {{< mermaid >}}
+   ```mermaid
    graph TD;
        可等待对象-->A[协程 coroutine];
        可等待对象-->B[任务 Task];
        可等待对象-->C[Future];
-   {{< /mermaid >}}
+   ```
 
    任务（Task）是由协程（coroutine）使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
 
@@ -269,4 +270,3 @@ gantt
 - [协程与任务 - Python 文档](https://docs.python.org/zh-cn/3/library/asyncio-task.html)
 - [同步原语 - Python 文档](https://docs.python.org/zh-cn/3/library/asyncio-sync.html)
 - [事件循环 - Python 文档](https://docs.python.org/zh-cn/3/library/asyncio-eventloop.html)
-
