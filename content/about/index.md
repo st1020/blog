@@ -31,13 +31,9 @@ Wir müssen wissen. Wir werden wissen.
 {{< admonition tip "兴趣爱好" true >}}
 
 - 编程
-
 - 动漫
-
 - 科幻
-
 - 摄影
-
 - 阅读
 
 {{< /admonition >}}
@@ -47,6 +43,6 @@ Wir müssen wissen. Wir werden wissen.
 - [AliceBot](https://github.com/st1020/alicebot)
 - [Sophia-doc](https://github.com/st1020/sophia-doc)
 - [Lucia-lang](https://github.com/st1020/lucia-lang)
-- Doing...
+- [LikeIt](https://github.com/st1020/LikeIt)
 
 {{< /admonition >}}
