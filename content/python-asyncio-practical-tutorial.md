@@ -1,18 +1,24 @@
----
-title: "Python 异步IO实用教程"
-date: 2021-08-10T09:39:24+08:00
-draft: false
-categories: ["Python"]
-tags: ["python", "asyncio"]
----
++++
+title = "Python 异步IO实用教程"
+date = 2021-08-10T09:39:24+08:00
 
-网络上大部分关于 Python 异步 IO 的教程受制于历史原因，往往都是从基于生成器的协程开始讲起的，但是，基于生成器的协程在 Python 3.8 版本中已经被弃用并且将在 Python 3.10 版本中被移除，从 Python 3.7 版本开始，异步 IO 库也发生了许多更改，添加了许多便于使用的高层级 API ，但许多教程仍只涉及低层级 API，使初学者非常迷惑，觉得异步 IO 是一个很难使用的东西。为了尝试解决这些问题，我写了这篇教程，本篇仅涉及 Python 异步 IO 的基本概念和常用的非常简单的使用方法。
+[taxonomies]
+categories = ["Python"]
+tags = ["python", "asyncio"]
+
+[extra]
+mermaid = true
++++
+
+网络上大部分关于 Python 异步 IO 的教程受制于历史原因，往往都是从基于生成器的协程开始讲起的，但是，基于生成器的协程在 Python 3.8 版本中已经被弃用并且将在 Python 3.10 版本中被移除，从 Python 3.7 版本开始，异步 IO 库也发生了许多更改，添加了许多便于使用的高层级 API，但许多教程仍只涉及低层级 API，使初学者非常迷惑，觉得异步 IO 是一个很难使用的东西。为了尝试解决这些问题，我写了这篇教程，本篇仅涉及 Python 异步 IO 的基本概念和常用的非常简单的使用方法。
 
 ## 异步 IO 与并发执行
 
 首先我们要明白的异步 IO 的本质是什么。
 
-如果我们希望一个代码能够并发执行，有这几种方式，多进程，多线程和协程，它们在 Python 中分别对应了 [multiprocessing](https://docs.python.org/zh-cn/3/library/multiprocessing.html)， [threading](https://docs.python.org/zh-cn/3/library/threading.html) 和 [asyncio](https://docs.python.org/zh-cn/3/library/asyncio.html) 库，在历史上，进程曾是大部分分时系统中程序运行的基本单位，而在现代操作系统中，进程是线程的容器。通俗的来讲，系统中运行的每一个程序都是一个进程，而每个进程有包含多个线程。每个线程都可以并行运行。
+如果我们希望一个代码能够并发执行，有这几种方式，多进程，多线程和协程，它们在 Python 中分别对应了 [multiprocessing](https://docs.python.org/zh-cn/3/library/multiprocessing.html)，[threading](https://docs.python.org/zh-cn/3/library/threading.html) 和 [asyncio](https://docs.python.org/zh-cn/3/library/asyncio.html) 库，在历史上，进程曾是大部分分时系统中程序运行的基本单位，而在现代操作系统中，进程是线程的容器。通俗的来讲，系统中运行的每一个程序都是一个进程，而每个进程有包含多个线程。每个线程都可以并行运行。
+
+{% mermaid() %}
 
 ```mermaid
 graph TD;
@@ -23,9 +29,11 @@ graph TD;
     进程2-->线程2-1;
 ```
 
+{% end %}
+
 但是，实际上它们真的在并行运行吗？答案是不确定的，这取决于 CPU 的核心数，在“远古”时代，CPU 只有一个核心，所以在物理层面上，进程与线程并没有办法并行执行，于是操作系统用一个方法“骗过”了用户，通过快速地切换运行的进程来产生一种它们正在并行运行的错觉，所以如果你的电脑只有一个核心，并且你的程序只涉及单纯的 CPU 计算，那么多线程或多进程并不会提高运行的效率，反而可能会因为调度过程中的损耗而浪费部分 CPU 资源。但好在现在的 CPU 都有多个核心了，每个线程可以在独立的 CPU 上运行，所以多线程技术可以显著加快计算的速度。不过 Python 语言的最常用实现 CPython 由于 GIL 的存在，并不能很好的利用多线程，所以对于 CPU 密集型的程序需要使用多进程代替多线程。
 
-实际上，计算机的 CPU 的运算速度远远大于网络或磁盘等 IO（输入/输出）。在很多情境下，我们的程序都不是 CPU 密集型，而是 IO 密集型的，也就是频繁地访问网络或磁盘，而对于 CPU 计算消耗的时间不是很敏感。
+实际上，计算机的 CPU 的运算速度远远大于网络或磁盘等 IO(输入/输出)。在很多情境下，我们的程序都不是 CPU 密集型，而是 IO 密集型的，也就是频繁地访问网络或磁盘，而对于 CPU 计算消耗的时间不是很敏感。
 
 传统的同步 IO，在 IO 操作过程中当前线程会被挂起，线程会等待 IO 操作完成在继续完成下面的代码。举一个例子，我们的程序要下载 100 个文件，如果我们使用同步 IO，程序向服务器发送一个网络请求，等 1 秒才能获得返回的信息，程序会等待返回信息后再继续进行下一个请求，100 个文件就需要至少 100 秒。所以我们必须使用多线程或多进程来并行下载，100 个线程同时发出网络请求，然后一起等 1 秒，一共只需要消耗 1 秒。
 
@@ -33,13 +41,15 @@ graph TD;
 
 ## 协程
 
-协程（Coroutines）又叫纤程（Fiber）。我们暂且将协程理解为一种特殊的子程序（函数）。
+协程 (Coroutines) 又叫纤程 (Fiber)。我们暂且将协程理解为一种特殊的子程序 (函数)。
 
-{{< admonition type=tip title="提示" >}}
+{% admonition(type="tip") %}
+
 实际上，上面的那句话是错误的，正确的是：子程序是协程的一种特例。
 
 不过大多数语言都有子程序的概念，但不一定有协程的概念，在 Python 中函数也并不是协程的子类。
-{{< /admonition >}}
+
+{% end %}
 
 在 Python 中协程用 `async/await` 语法进行声明：
 
@@ -57,7 +67,7 @@ async def foo():
 asyncio.run(main())
 ```
 
-协程在声明时需要使用 `async def` 代替 `def` ，而在调用时需要使用 `await` 来代替直接调用。不使用 `await` 直接调用一个协程并不会使它运行，只会得到一个协程对象。
+协程在声明时需要使用 `async def` 代替 `def`，而在调用时需要使用 `await` 来代替直接调用。不使用 `await` 直接调用一个协程并不会使它运行，只会得到一个协程对象。
 
 在最外层则需要通过 `asyncio.run()` 来运行一个协程。
 
@@ -77,13 +87,13 @@ def foo():
 main()
 ```
 
-那么我们多写了那么多代码到底有什么用呢？虽然它们运行的效果是相同的，但是原理却并不相同，前者在调用 `await asyncio.sleep(1)` 时它实际上是挂起了当前的**任务**，以允许其他任务的运行，当然这里并没有其他的任务。后者的 `time.sleep(1)` 则是挂起（阻塞）了当前的**线程**。
+那么我们多写了那么多代码到底有什么用呢？虽然它们运行的效果是相同的，但是原理却并不相同，前者在调用 `await asyncio.sleep(1)` 时它实际上是挂起了当前的**任务**，以允许其他任务的运行，当然这里并没有其他的任务。后者的 `time.sleep(1)` 则是挂起 (阻塞) 了当前的**线程**。
 
 ## 可等待对象
 
 上面我们提到了 `await` 语句用于运行协程，实际上它表示的是等待协程运行完毕，就像同步程序一样，所以上面的两个程序效果是相同。
 
-在 Python 中所有可以被 `await` 语句等待的对象都叫做可等待对象，协程就是一种可等待对象。可等待对象有三种主要类型：协程（coroutine），任务（Task）和 Future 。
+在 Python 中所有可以被 `await` 语句等待的对象都叫做可等待对象，协程就是一种可等待对象。可等待对象有三种主要类型：协程 (coroutine)，任务 (Task) 和 Future。
 
 其中 Future 是一种低层级的可等待对象，我们暂且不讨论，下面我们来了解一下任务。
 
@@ -160,9 +170,11 @@ async def main():
 asyncio.run(main())
 ```
 
-{{< admonition type=tip title="提示" >}}
+{% admonition(type="tip") %}
+
 `asyncio.gather()` 的内部实现和之前的代码并不相同，只是效果类似。
-{{< /admonition >}}
+
+{% end %}
 
 上面所有例子中的 `asyncio.sleep(1)` 都可以换成真实的 IO 操作，比如下面的使用 `httpx` 库获取网页的例子。
 
@@ -194,6 +206,8 @@ asyncio.run(main())
 
 我们可以用下图清晰地表示使用多线程和协程任务进行并发处理的不同：
 
+{% mermaid() %}
+
 ```mermaid
 gantt
     dateFormat  DD
@@ -213,6 +227,10 @@ gantt
     等待响应    :      active, task32, after task31, 15d
     处理响应    :crit, done,   task33, after task32, 1d
 ```
+
+{% end %}
+
+{% mermaid() %}
 
 ```mermaid
 gantt
@@ -234,34 +252,42 @@ gantt
     处理响应    :crit, done,   task33, after task32, 1d
 ```
 
+{% end %}
+
 看上面的图，你可能觉得还是多线程效率更高些，但事实并非如此，首先，上面的图并非真实的比例，真实情况下，等待响应的时间会远远大于网络请求和处理响应的时间，上面的差距可以忽略不计。其次，上面的图有一个前提就是线程/进程数小于 CPU 核心数，若大于的话也并不会进一步提高效率，往往并行 IO 操作数量都是大于用户的 CPU 核心数的。最后，切换进程是会耗费额外的资源的，相比之下，协程切换任务的消耗则要小一些。
 
 ## 总结
 
-1. **同步 IO 和异步 IO**
+1.  **同步 IO 和异步 IO**
 
-   同步 IO 在进行 IO 操作时会阻塞当前进程，而异步 IO 则不阻塞。
+    同步 IO 在进行 IO 操作时会阻塞当前进程，而异步 IO 则不阻塞。
 
-2. **可等待对象**
+2.  **可等待对象**
 
-   ```mermaid
-   graph TD;
-       可等待对象-->A[协程 coroutine];
-       可等待对象-->B[任务 Task];
-       可等待对象-->C[Future];
-   ```
+    {% mermaid() %}
 
-   任务（Task）是由协程（coroutine）使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
+    ```mermaid
+    graph TD;
+        可等待对象-->A[协程 coroutine];
+        可等待对象-->B[任务 Task];
+        可等待对象-->C[Future];
+    ```
 
-3. **运行一个协程**
+    {% end %}
 
-   - `asyncio.run()` 函数：用于运行最高级入口点，如 `main()` 协程。
-   - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
-   - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。
+    任务 (Task) 是由协程 (coroutine) 使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
 
-{{< admonition type=note title="注意" >}}
-如果你使用了异步 IO，请尽量在程序的所有地方都使用协程，网络请求等 IO 库也要使用支持异步 IO 的库，如 [aiohttp](https://docs.aiohttp.org/)， [httpx](https://www.python-httpx.org/) 等。
-{{< /admonition >}}
+3.  **运行一个协程**
+
+    - `asyncio.run()` 函数：用于运行最高级入口点，如 `main()` 协程。
+    - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
+    - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。
+
+{% admonition(type="note") %}
+
+如果你使用了异步 IO，请尽量在程序的所有地方都使用协程，网络请求等 IO 库也要使用支持异步 IO 的库，如 [aiohttp](https://docs.aiohttp.org/)，[httpx](https://www.python-httpx.org/) 等。
+
+{% end %}
 
 ## 参考
 

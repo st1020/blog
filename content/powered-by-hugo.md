@@ -1,12 +1,13 @@
----
-title: "Powered by Hugo"
-date: 2020-07-15T21:56:46+08:00
-draft: false
-categories: ["杂谈"]
-tags: ["Hugo", "Blog"]
----
++++
+title = "Powered by Hugo"
+date = 2020-07-15T21:56:46+08:00
 
-由于各种原因，已经很久没有更新博客了...~~鸽子真快乐~~。总之，从今天起，本博客正式迁移至 Hugo！
+[taxonomies]
+categories = ["杂谈"]
+tags = ["Blog"]
++++
+
+由于各种原因，已经很久没有更新博客了...鸽子真快乐。总之，从今天起，本博客正式迁移至 Hugo！
 
 其实在开始建立这个博客的时候我就已经想要使用 Hugo 作为静态博客生成器了，只是一直没有找到满意的主题，所以就搁置了下来，直到最近我终于找到了一个可以说非常完美的主题：[LoveIt](https://github.com/dillonzq/LoveIt)，于是果断将博客迁移到了 Hugo 上了。
 
@@ -16,4 +17,4 @@ Hugo 在很多方面都要比 Hexo 更加方便，首先，Hugo 的环境配置�
 
 最后，再见 Hexo，你好 Hugo！
 
-Farewell Hexo, Hello Hugo!
+Farewell Hexo, Hello Hugo\!

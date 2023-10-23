@@ -1,0 +1,15 @@
+{
+  "ul-indent": {
+    "indent": 4
+  },
+  "line-length": false,
+  "no-trailing-punctuation": {
+    "punctuation": ".,;:。，；："
+  },
+  "list-marker-space": {
+    "ol_multi": 2,
+    "ol_single": 2,
+    "ul_multi": 1,
+    "ul_single": 1
+  }
+}
