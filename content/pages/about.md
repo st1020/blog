@@ -16,20 +16,11 @@ Wir müssen wissen. Wir werden wissen.
 大卫·希尔伯特 (David Hilbert)
 </p>
 
-{% admonition(type="example", title="基础信息") %}
+{% admonition(type="success", title="基础信息") %}
 
 - 大学生
 - 热爱生活，热爱科技
 - Github：<https://github.com/st1020>
-
-{% end %}
-
-{% admonition(type="note", title="专业知识") %}
-
-- Python
-- Rust
-- TypeScript / JavaScript
-- Learning...
 
 {% end %}
 
@@ -43,11 +34,11 @@ Wir müssen wissen. Wir werden wissen.
 
 {% end %}
 
-{% admonition(type="success", title="正在进行的项目") %}
+{% admonition(type="note", title="专业知识") %}
 
-- [AliceBot](https://github.com/st1020/alicebot)
-- [Sophia-doc](https://github.com/st1020/sophia-doc)
-- [Lucia-lang](https://github.com/st1020/lucia-lang)
-- [Kita](https://github.com/st1020/kita)
+- Python
+- Rust
+- TypeScript / JavaScript
+- Learning...
 
 {% end %}
