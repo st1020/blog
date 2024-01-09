@@ -13,16 +13,8 @@ jobs:
         with:
           submodules: true
 
-      - run: 'wget -q -O -
-          "https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz"
-          | tar xzf - -C /usr/local/bin'
-
-      - run: zola build
-
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: public
+        uses: st1020/zola-deploy@v1
 
   deploy:
     needs: build
@@ -39,4 +31,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
