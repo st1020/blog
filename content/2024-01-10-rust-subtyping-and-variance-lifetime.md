@@ -189,7 +189,7 @@ fn main() {
 
 很明显，这里是不安全的，无法通过编译，在最后的 `println!()` 处 `world` 已经被释放了。
 
-这里的问题在于，调用 `assign` 时，我们传入的两个类型是 `&mut &'static str` 和 `&'world str`，根据 `&'a T` 对 `'a` 协变，所以 `&'static str` 是 `&'world str` 的子类型。但是 `&'a mut T` 对 `T` 不变，所以这里，编译器不能对它做任何子类型化，因此，要求 `val` 参数的 `T` 是 `&mut T` 中的 `T` 的子类型，而这里 `val` 中的 `T` 是 `&'world str`，不是 `&'static str` 的子类型，所以生命周期检查失败了。
+这里的问题在于，调用 `assign` 时，我们传入的两个类型是 `&mut &'static str` 和 `&'world str`，根据 `&'a T` 对 `'a` 协变，所以 `&'static str` 是 `&'world str` 的子类型。但是 `&'a mut T` 对 `T` 不变，所以这里，编译器不能对它做任何子类型化，因此，按照函数声明中的要求，`val` 参数的 `T` 和 `&mut T` 中的 `T` 必须“完全相同”，而这里 `val` 中的 `T` 是 `&'world str`，不是 `&'static str`，所以生命周期检查失败了。
 
 如果修改成这样就可以通过检查了：
 
@@ -207,10 +207,11 @@ fn main() {
 }
 ```
 
-我们传入的两个类型是 `&mut &'world str` 和 `&'static str`，同样，要求 `val` 中的 `T` 是 `&mut T` 中的 `T` 的子类型，也就是要求 `&'static str` 是 `&'world str` 的子类型，而事实确实如此，因此通过了生命周期检查。
+我们传入的两个类型是 `&mut &'world str` 和 `&'static str`，同样，要求 `val` 中的 `T` 和 `&mut T` 中的 `T` 完全相同，可是这里传入的也不相同啊？这涉及到了 Rust 的类型自动强转机制，“在函数传参时，实参将自动转换为形参”，允许转换的规则中有一条“子类型可以转换为父类型”，虽然 `&mut` 无法进行子类型化，但 `&'static str` 是 `&'world str` 的子类型，`&'static str` 被自动强转为 `&'world str`，因此通过了生命周期检查。上面的例子，则无法进行上述的自动强转，所以生命周期检查失败了。
 
 ## 参考
 
 - [Subtyping and Variance - The Rustonomicon](https://doc.rust-lang.org/nomicon/subtyping.html) （[中文翻译](https://nomicon.purewhite.io/subtyping.html)）
 - [Subtyping and Variance - The Rust Reference](https://doc.rust-lang.org/reference/subtyping.html) （[中文翻译](https://rustwiki.org/zh-CN/reference/subtyping.html)）
+- [Type coercions - The Rust Reference](https://doc.rust-lang.org/reference/type-coercions.html) （[中文翻译](https://rustwiki.org/zh-CN/reference/type-coercions.html)）
 - [逆变、协变与子类型，以及 Rust](https://ioover.net/dev/variance-and-subtyping/)
