@@ -18,7 +18,6 @@ Wir müssen wissen. Wir werden wissen.
 
 {% admonition(type="success", title="基础信息") %}
 
-- 大学生
 - 编程爱好者，后端程序员
 - 爱好广泛地学习各个领域
 - Github：<https://github.com/st1020>

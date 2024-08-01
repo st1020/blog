@@ -3,7 +3,7 @@ title = "Hexo-NexT 主题个性化定制"
 date = 2020-04-08T11:22:14+08:00
 
 [taxonomies]
-categories = ["前端"]
+categories = ["Web"]
 tags = ["Hexo", "Blog"]
 +++
 

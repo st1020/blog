@@ -3,7 +3,7 @@ title = "C 语言小技巧"
 date = 2020-12-03T18:49:43+08:00
 
 [taxonomies]
-categories = ["C/C++"]
+categories = ["Programming Languages"]
 tags = ["C"]
 +++
 

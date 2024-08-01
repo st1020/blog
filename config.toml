@@ -19,12 +19,12 @@ compile_sass = false
 minify_html = true
 
 # When set to "true", a feed is automatically generated.
-generate_feed = true
+generate_feeds = true
 
-# The filename to use for the feed. Used as the template filename, too.
-# Defaults to "atom.xml", which has a built-in template that renders an Atom 1.0 feed.
+# The filenames to use for the feeds. Used as the template filenames, too.
+# Defaults to ["atom.xml"], which has a built-in template that renders an Atom 1.0 feed.
 # There is also a built-in template "rss.xml" that renders an RSS 2.0 feed.
-feed_filename = "atom.xml"
+feed_filenames = ["atom.xml"]
 
 # The taxonomies to be rendered for the site and their configuration of the default languages
 # Example:
@@ -67,6 +67,9 @@ external_links_no_referrer = true
 # Whether smart punctuation is enabled (changing quotes, dashes, dots in their typographic form)
 # For example, `...` into `…`, `"quote"` into `“curly”` etc
 smart_punctuation = false
+
+[extra]
+social_image = "./favicon.svg"
 
 [extra.profile]
 name = "St1020"

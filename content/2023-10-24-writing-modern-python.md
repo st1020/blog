@@ -4,7 +4,7 @@ date = 2023-10-24T20:25:39+08:00
 
 [taxonomies]
 categories = ["Python"]
-tags = ["Python", "Computer Language"]
+tags = ["Python", "Programming Languages"]
 +++
 
 好久没写博客了，今天想结合我个人的经验聊一聊如何编写现代的 Python 代码。

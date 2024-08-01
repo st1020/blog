@@ -4,7 +4,7 @@ date = 2020-09-14T19:58:28+08:00
 
 [taxonomies]
 categories = ["Python"]
-tags = ["Python", "Computer Language"]
+tags = ["Python", "Programming Languages"]
 +++
 
 ## BrainFuck
