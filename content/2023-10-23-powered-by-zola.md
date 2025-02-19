@@ -15,7 +15,7 @@ tags = ["Blog"]
 
 尤其要点名批评 Go template 这个混沌邪恶的产物，它的语法实在是非常的反直觉了，感觉就像函数式语言和命令式语言的缝合。
 
-除此之外，对于 Hugo 我也有又一些抱怨，随着不断的发展，它已经太重了，这使得它的学习成本比较高，具体可以看一下 [Migrating my blog to Zola](https://mrkaran.dev/posts/migrating-to-zola/) 这篇博客中他迁移的原因。
+除此之外，对于 Hugo 我也有一些抱怨，随着不断的发展，它已经太重了，这使得它的学习成本比较高，具体可以看一下 [Migrating my blog to Zola](https://mrkaran.dev/posts/migrating-to-zola/) 这篇博客中他迁移的原因。
 
 所以，我觉得是时候换一个新的 SSG 了，对于新的 SSG 我有如下要求：
 
