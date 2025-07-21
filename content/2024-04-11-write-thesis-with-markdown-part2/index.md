@@ -78,7 +78,7 @@ link-bibliography: true
     "title": "基于 Pandoc 和 Typst 的论文写作",
     "school": "计算机学院",
     "major": "计算机科学与技术",
-    "class": "xxx班",
+    "class": "xxx 班",
     "author": "张三",
     "id": "xxxxxx",
     "mentor": "李四",
@@ -479,7 +479,7 @@ show heading.where(level: 1): it => {
   set align(center)
   let text = it.body.at("text", default: "")
   if ("摘要", "Abstract").contains(text) {
-    sepcial-title(text)
+    special-title(text)
   } else {
     it
   }

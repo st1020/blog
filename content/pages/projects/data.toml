@@ -27,15 +27,7 @@ links = [
 ]
 
 [[project]]
-name = "zhlint-rs"
-desc = "一个用于中文文本的格式化工具。格式化规则和测试用例来自 zhlint 项目，但是两者的行为存在不同。(WIP)"
-tags = ["rust", "linter", "chinese"]
-links = [
-    { name = "github", url = "https://github.com/zhlint-project/zhlint-rs" },
-]
-
-[[project]]
 name = "Sophia-doc"
-desc = "分析 Python 模块的 Docstring 并自动生成 Markdown 格式的 API 文档的工具，基于 PEP 257 – Docstring Conventions 和 PEP 484 – Type Hints 标准。支持分析 Pyhton 函数或类的的类型注解，用于 AliceBot 项目的 API 文档生成。"
+desc = "分析 Python 模块的 Docstring 并自动生成 Markdown 格式的 API 文档的工具，基于 PEP 257 – Docstring Conventions 和 PEP 484 – Type Hints 标准。支持分析 Python 函数或类的的类型注解，用于 AliceBot 项目的 API 文档生成。"
 tags = ["python", "docstring"]
 links = [{ name = "github", url = "https://github.com/st1020/sophia-doc" }]

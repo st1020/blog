@@ -1,8 +1,8 @@
-var defaultEncoding = 2; // 网站默认语言，1: 繁體中文, 2: 简体中文
-var translateDelay = 0; // 延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var defaultEncoding = 2; // 网站默认语言，1: 繁體中文，2: 简体中文
+var translateDelay = 0; // 延迟时间，若不在前，要设定延迟翻译时间，如 100 表示 100ms，默认为 0
 var msgToTraditionalChinese = "繁體"; // 此处可以更改为你想要显示的文字
 var msgToSimplifiedChinese = "简体"; // 同上，但两处均不建议更改
-var translateButtonId = "translateLink"; // 默认互换id
+var translateButtonId = "translateLink"; // 默认互换 id
 var currentEncoding = defaultEncoding;
 var targetEncoding =
   document.cookie.replace(
@@ -10,7 +10,7 @@ var targetEncoding =
     "$1"
   ) || defaultEncoding;
 var translateButtonObject;
-translateInitilization();
+translateInitialization();
 function translateText(txt) {
   if (txt == "" || txt == null) return "";
   if (currentEncoding == 1 && targetEncoding == 2) return Simplized(txt);
@@ -85,7 +85,7 @@ function Simplized(cc) {
   }
   return str;
 }
-function translateInitilization() {
+function translateInitialization() {
   translateButtonObject = document.getElementById(translateButtonId);
   if (translateButtonObject) {
     with (translateButtonObject) {
