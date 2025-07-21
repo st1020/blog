@@ -38,7 +38,9 @@ apt install pandoc typst
 
 一图胜千言，下面是整个 Markdown to Typst 需要用到的文件和工作流：
 
-![Process](process.svg)
+{% inline_svg() %}
+![Inline SVG](process.svg)
+{% end %}
 
 文件树：
 
