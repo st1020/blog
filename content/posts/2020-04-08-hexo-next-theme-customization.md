@@ -74,7 +74,7 @@ moon_menu:
 
 [两步让你的网站支持简体繁体切换](http://qingbo.site/2016/10/11/how-set-Chinese-Simplified-switch-to-Chinese-Traditional/)
 
-其中提供了一个简繁转换的脚本，我在此基础上做了一点修改，功能上应该是相同的，可以点击 [这里](http://st1020.top/hexo-next-theme-customization/tw_cn.js) 下载，如果想要下载原脚本的话可以访问上面的网站。
+其中提供了一个简繁转换的脚本，我在此基础上做了一点修改，功能上大体是相同的。
 
 首先下载上面的脚本，放在 `/source/js/tw_cn.js`。
 

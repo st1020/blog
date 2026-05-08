@@ -6,7 +6,7 @@ categories = ["杂谈"]
 tags = ["Markdown"]
 +++
 
-这篇是[上篇](@/2024-02-27-write-thesis-with-markdown-part1/index.md)的续集。
+这篇是[上篇](@/posts/2024-02-27-write-thesis-with-markdown-part1/index.md)的续集。
 
 最近要交论文终稿了，学校的通知也说明了需要提交 PDF 格式的论文，那么看起来我没有不使用 Typst 的理由了。
 
@@ -169,7 +169,7 @@ fn main() {
 
 Id 为 `refs` 的 [fenced Div](https://pandoc.org/MANUAL.html#extension-fenced_divs) 块用于[放置参考文献列表](https://pandoc.org/MANUAL.html#placement-of-the-bibliography)。
 
-除了 Markdown 文件，还需要 images 目录用于存储论文中用到的图片，和 ref.bib 文件用于存放参考文献，关于参考文献的管理，参考[上篇](@/2024-02-27-write-thesis-with-markdown-part1/index.md)。
+除了 Markdown 文件，还需要 images 目录用于存储论文中用到的图片，和 ref.bib 文件用于存放参考文献，关于参考文献的管理，参考[上篇](@/posts/2024-02-27-write-thesis-with-markdown-part1/index.md)。
 
 ## Pandoc
 
