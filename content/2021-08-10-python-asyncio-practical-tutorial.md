@@ -278,7 +278,6 @@ gantt
     任务 (Task) 是由协程 (coroutine) 使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
 
 3.  **运行一个协程**
-
     - `asyncio.run()` 函数：用于运行最高级入口点，如 `main()` 协程。
     - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
     - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。

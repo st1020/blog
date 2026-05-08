@@ -5,17 +5,14 @@ var msgToSimplifiedChinese = "简体"; // 同上，但两处均不建议更改
 var translateButtonId = "translateLink"; // 默认互换 id
 var currentEncoding = defaultEncoding;
 var targetEncoding =
-  document.cookie.replace(
-    /(?:(?:^|.*;\s*)targetEncoding\s*\=\s*([^;]*).*$)|^.*$/,
-    "$1"
-  ) || defaultEncoding;
+  document.cookie.replace(/(?:(?:^|.*;\s*)targetEncoding\s*\=\s*([^;]*).*$)|^.*$/, "$1") ||
+  defaultEncoding;
 var translateButtonObject;
 translateInitialization();
 function translateText(txt) {
   if (txt == "" || txt == null) return "";
   if (currentEncoding == 1 && targetEncoding == 2) return Simplized(txt);
-  else if (currentEncoding == 2 && targetEncoding == 1)
-    return Traditionalized(txt);
+  else if (currentEncoding == 2 && targetEncoding == 1) return Traditionalized(txt);
   else return txt;
 }
 function translateBody(fobj) {
@@ -23,20 +20,11 @@ function translateBody(fobj) {
   else var objs = document.body.childNodes;
   for (var i = 0; i < objs.length; i++) {
     var obj = objs.item(i);
-    if (
-      "||BR|HR|TEXTAREA|".indexOf("|" + obj.tagName + "|") > 0 ||
-      obj == translateButtonObject
-    )
+    if ("||BR|HR|TEXTAREA|".indexOf("|" + obj.tagName + "|") > 0 || obj == translateButtonObject)
       continue;
-    if (obj.title != "" && obj.title != null)
-      obj.title = translateText(obj.title);
+    if (obj.title != "" && obj.title != null) obj.title = translateText(obj.title);
     if (obj.alt != "" && obj.alt != null) obj.alt = translateText(obj.alt);
-    if (
-      obj.tagName == "INPUT" &&
-      obj.value != "" &&
-      obj.type != "text" &&
-      obj.type != "hidden"
-    )
+    if (obj.tagName == "INPUT" && obj.value != "" && obj.type != "text" && obj.type != "hidden")
       obj.value = translateText(obj.value);
     if (obj.nodeType == 3) obj.data = translateText(obj.data);
     else translateBody(obj);
@@ -98,8 +86,7 @@ function translateInitialization() {
     }
     if (currentEncoding != targetEncoding) {
       setTimeout("translateBody()", translateDelay);
-      if (targetEncoding == 1)
-        translateButtonObject.innerHTML = msgToSimplifiedChinese;
+      if (targetEncoding == 1) translateButtonObject.innerHTML = msgToSimplifiedChinese;
       else translateButtonObject.innerHTML = msgToTraditionalChinese;
     }
   }

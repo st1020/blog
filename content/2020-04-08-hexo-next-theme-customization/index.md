@@ -189,12 +189,7 @@ head: source/_data/head.swig
 然后新建 `/source/_data/head.swig` 文件，写入：
 
 ```html
-<link
-  href="/css/dark.css"
-  rel="alternate stylesheet"
-  type="text/css"
-  title="dark"
-/>
+<link href="/css/dark.css" rel="alternate stylesheet" type="text/css" title="dark" />
 <script type="text/javascript" src="/js/darkmode.js"></script>
 ```
 
@@ -238,11 +233,7 @@ function switchDarkMode() {
 
 ```javascript
 function switchDarkMode() {
-  var night =
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    ) || "0";
+  var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || "0";
   if (night == "0") {
     document.querySelector('link[title="dark"]').disabled = true;
     document.querySelector('link[title="dark"]').disabled = false;
@@ -270,20 +261,10 @@ moon_menu:
 首先，手动切换的优先级肯定是要高于自动切换的，那么我们就要首先判断是否定义了 cookie，如果定义了就使用定义的，没定义就判断时间和系统情况。注意，由于我们在上面设置 cookie 时没有设置持续时间，cookie 是会在浏览器会话结束后自动清除的。代码如下：
 
 ```javascript
-if (
-  document.cookie.replace(
-    /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-    "$1"
-  ) == ""
-) {
+if (document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "") {
   // 判断时间和系统情况
 } else {
-  if (
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    ) == "1"
-  ) {
+  if (document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "1") {
     document.querySelector('link[title="dark"]').disabled = true;
     document.querySelector('link[title="dark"]').disabled = false;
   }
@@ -315,49 +296,27 @@ html {
 上面的代码会在渲染静态页面时插入到 `/css/main.css` 中，它会使用 `@media` 判断系统的 `prefers-color-scheme` 并设置 html 的 `content` 属性，`content` 属性有一些特殊用法，但这里我们没有用到，可以姑且认为 `content` 属性在这里不会对页面的显示样式产生任何影响，只是起到了传递信息的作用，我们可以使用 JS 读出这一属性并保存为常量，代码如下：
 
 ```javascript
-const mode = getComputedStyle(document.documentElement).getPropertyValue(
-  "content"
-);
+const mode = getComputedStyle(document.documentElement).getPropertyValue("content");
 ```
 
 最后完整的 `dark.js` 代码如下：
 
 ```javascript
-const mode = getComputedStyle(document.documentElement).getPropertyValue(
-  "content"
-);
-if (
-  document.cookie.replace(
-    /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-    "$1"
-  ) == ""
-) {
-  if (
-    mode == '"dark"' ||
-    new Date().getHours() > 22 ||
-    new Date().getHours() < 6
-  ) {
+const mode = getComputedStyle(document.documentElement).getPropertyValue("content");
+if (document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "") {
+  if (mode == '"dark"' || new Date().getHours() > 22 || new Date().getHours() < 6) {
     document.querySelector('link[title="dark"]').disabled = true;
     document.querySelector('link[title="dark"]').disabled = false;
   }
 } else {
-  if (
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    ) == "1"
-  ) {
+  if (document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") == "1") {
     document.querySelector('link[title="dark"]').disabled = true;
     document.querySelector('link[title="dark"]').disabled = false;
   }
 }
 
 function switchDarkMode() {
-  var night =
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    ) || "0";
+  var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || "0";
   if (night == "0") {
     document.querySelector('link[title="dark"]').disabled = true;
     document.querySelector('link[title="dark"]').disabled = false;
@@ -388,10 +347,7 @@ function switchDarkMode() {
     <b>一言</b>
   </div>
   <p id="hitokoto" style="padding: 0; margin: 0;">:D 获取中...</p>
-  <p
-    id="hitofrom"
-    style="font-style: italic; text-align: right; padding: 0; margin: 0;"
-  >
+  <p id="hitofrom" style="font-style: italic; text-align: right; padding: 0; margin: 0;">
     :D 获取中...
   </p>
   <script>

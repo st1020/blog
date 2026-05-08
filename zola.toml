@@ -31,7 +31,7 @@ insert_anchor_links = "heading"
 
 [markdown.highlighting]
 error_on_missing_language = true
-style = "inline"
+style = "class"
 theme = "dark-plus"
 
 
