@@ -1,6 +1,5 @@
 +++
 title = "编写现代的 Python"
-date = 2023-10-24T20:25:39+08:00
 
 [taxonomies]
 categories = ["Python"]

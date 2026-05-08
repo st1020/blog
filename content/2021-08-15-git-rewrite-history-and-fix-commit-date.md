@@ -1,6 +1,5 @@
 +++
 title = "Git 重写历史和修复提交日期"
-date = 2021-08-15T21:19:46+08:00
 
 [taxonomies]
 categories = ["Git"]

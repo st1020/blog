@@ -1,6 +1,5 @@
 +++
 title = "Hello World"
-date = 2020-04-06T12:09:51+08:00
 
 [taxonomies]
 categories = ["杂谈"]

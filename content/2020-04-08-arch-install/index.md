@@ -1,6 +1,5 @@
 +++
 title = "Arch Linux 安装记录"
-date = 2020-04-08T11:22:14+08:00
 
 [taxonomies]
 categories = ["Linux"]

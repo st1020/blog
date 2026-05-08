@@ -1,6 +1,5 @@
 +++
 title = "Powered by Zola"
-date = 2023-10-23T20:23:45+08:00
 
 [taxonomies]
 categories = ["杂谈"]

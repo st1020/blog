@@ -1,6 +1,5 @@
 +++
 title = "关于停机问题与自指性悖论"
-date = 2020-07-21T09:56:48+08:00
 
 [taxonomies]
 categories = ["杂谈"]

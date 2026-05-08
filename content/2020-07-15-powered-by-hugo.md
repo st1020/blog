@@ -1,6 +1,5 @@
 +++
 title = "Powered by Hugo"
-date = 2020-07-15T21:56:46+08:00
 
 [taxonomies]
 categories = ["杂谈"]
