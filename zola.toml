@@ -1,0 +1,92 @@
+base_url = "https://st1020.com"
+title = "石头的杂货铺"
+description = "St1020 的博客"
+author = "st1020"
+default_language = "zh-CN"
+
+theme = "kita"
+
+minify_html = true
+
+generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
+
+taxonomies = [
+    { name = "categories", feed = true, paginate_by = 5 },
+    { name = "tags", feed = true, paginate_by = 5 },
+]
+
+
+[markdown]
+render_emoji = true
+external_links_target_blank = true
+external_links_no_follow = true
+external_links_no_referrer = true
+external_links_external = true
+smart_punctuation = false
+definition_list = false
+bottom_footnotes = true
+github_alerts = true
+insert_anchor_links = "heading"
+
+[markdown.highlighting]
+error_on_missing_language = true
+style = "inline"
+theme = "dark-plus"
+
+
+[slugify]
+paths = "safe"
+taxonomies = "safe"
+anchors = "safe"
+
+
+[extra]
+side_toc = true
+social_image = "./favicon.svg"
+
+
+[extra.profile]
+name = "St1020"
+bio = "保持理性 独立思考"
+avatar_url = "./avatar.svg"
+avatar_invert = true
+
+[[extra.profile.social]]
+name = "github"
+url = "https://github.com/st1020"
+
+[[extra.profile.social]]
+name = "email"
+url = "mailto:me@st1020.com"
+
+[[extra.profile.social]]
+name = "rss"
+url = "$BASE_URL/atom.xml"
+
+
+[[extra.menu]]
+name = "项目"
+url = "$BASE_URL/projects"
+
+[[extra.menu]]
+name = "文章"
+url = "$BASE_URL/archive"
+
+[[extra.menu]]
+name = "标签"
+url = "$BASE_URL/tags"
+
+[[extra.menu]]
+name = "分类"
+url = "$BASE_URL/categories"
+
+[[extra.menu]]
+name = "关于"
+url = "$BASE_URL/about"
+
+
+[extra.footer]
+since = 2020
+license = "CC BY-SA 4.0"
+license_url = "https://creativecommons.org/licenses/by-sa/4.0/"

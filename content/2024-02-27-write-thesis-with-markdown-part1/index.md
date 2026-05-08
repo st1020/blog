@@ -89,7 +89,7 @@ china-national-standard-gb-t-7714-2015-numeric.csl 是一个 [引文风格语言
 
 ref.bib 是 BibLaTeX 格式的文献引用列表，格式如下：
 
-```bib
+```bibtex
 @article{kingma2014adam,
   title={Adam: A method for stochastic optimization},
   author={Kingma, Diederik P and Ba, Jimmy},
