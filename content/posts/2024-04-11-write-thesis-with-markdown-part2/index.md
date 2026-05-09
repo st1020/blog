@@ -16,8 +16,8 @@ tags = ["Markdown"]
 
 理由主要有以下两点：
 
-1.  Markdown 的生态更加完善。Markdown 有大量配套工具，而 Typst 则尚且不完善。比如我常用的 Prettier 用于 formatter，markdown-lint 用于 linter。这些在 Typst 中都暂时不存在替代品。并且，虽然 Typst 可以做到实时预览 PDF，但是却无法做到定位当前编辑的位置，当我修改了 Typst 文件后，PDF 会回到文件开头，也无法做到跟随滚动。
-2.  Markdown 是一种很好的中间语言。Markdown 可以很方便的转化为任何一种标记语言，它就像是一种所有标记语言的交集，如果未来我希望把我的论文发布在网络上，或者转化为其它语言，Markdown 就可以很方便的做到。
+1. Markdown 的生态更加完善。Markdown 有大量配套工具，而 Typst 则尚且不完善。比如我常用的 Prettier 用于 formatter，markdown-lint 用于 linter。这些在 Typst 中都暂时不存在替代品。并且，虽然 Typst 可以做到实时预览 PDF，但是却无法做到定位当前编辑的位置，当我修改了 Typst 文件后，PDF 会回到文件开头，也无法做到跟随滚动。
+2. Markdown 是一种很好的中间语言。Markdown 可以很方便的转化为任何一种标记语言，它就像是一种所有标记语言的交集，如果未来我希望把我的论文发布在网络上，或者转化为其它语言，Markdown 就可以很方便的做到。
 
 那么，开始我们的 Markdown to Typst 论文写作之旅吧。
 

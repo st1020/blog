@@ -18,8 +18,8 @@ tags = ["Linux", "Arch"]
 
 在安装之前我们需要首先准备一个 U 盘或者光盘作为安装介质。不过光盘这东西现在应该没人用了吧，那我就以 U 盘为例了。
 
-1.  下载镜像：[Arch Linux Downloads](https://www.archlinux.org/download/) 下载 Arch Linux 镜像。为了提高下载速度，我是在 [TUNA](https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/)(清华大学开源软件镜像站) 下载的。
-2.  烧录镜像：我是在 Windows 下使用 [Rufus](http://rufus.ie/) 烧录的镜像，当然，也可以使用其他软件。
+1. 下载镜像：[Arch Linux Downloads](https://www.archlinux.org/download/) 下载 Arch Linux 镜像。为了提高下载速度，我是在 [TUNA](https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/)(清华大学开源软件镜像站) 下载的。
+2. 烧录镜像：我是在 Windows 下使用 [Rufus](http://rufus.ie/) 烧录的镜像，当然，也可以使用其他软件。
 
 ### 磁盘分区
 

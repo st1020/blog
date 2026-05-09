@@ -250,29 +250,29 @@ gantt
 
 ## 总结
 
-1.  **同步 IO 和异步 IO**
+1. **同步 IO 和异步 IO**
 
-    同步 IO 在进行 IO 操作时会阻塞当前进程，而异步 IO 则不阻塞。
+   同步 IO 在进行 IO 操作时会阻塞当前进程，而异步 IO 则不阻塞。
 
-2.  **可等待对象**
+2. **可等待对象**
 
-    {% mermaid() %}
+   {% mermaid() %}
 
-    ```mermaid
-    graph TD;
-        可等待对象-->A[协程 coroutine];
-        可等待对象-->B[任务 Task];
-        可等待对象-->C[Future];
-    ```
+   ```mermaid
+   graph TD;
+       可等待对象-->A[协程 coroutine];
+       可等待对象-->B[任务 Task];
+       可等待对象-->C[Future];
+   ```
 
-    {% end %}
+   {% end %}
 
-    任务 (Task) 是由协程 (coroutine) 使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
+   任务 (Task) 是由协程 (coroutine) 使用 `asyncio.create_task()` 函数封装而成的，用于并行调度协程。
 
-3.  **运行一个协程**
-    - `asyncio.run()` 函数：用于运行最高级入口点，如 `main()` 协程。
-    - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
-    - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。
+3. **运行一个协程**
+   - `asyncio.run()` 函数：用于运行最高级入口点，如 `main()` 协程。
+   - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
+   - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。
 
 > [!NOTE]
 > 如果你使用了异步 IO，请尽量在程序的所有地方都使用协程，网络请求等 IO 库也要使用支持异步 IO 的库，如 [aiohttp](https://docs.aiohttp.org/)，[httpx](https://www.python-httpx.org/) 等。
