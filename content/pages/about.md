@@ -15,7 +15,7 @@ Wir müssen wissen. Wir werden wissen.
 大卫·希尔伯特 (David Hilbert)
 </p>
 
-{% admonition(type="success", title="基础信息") %}
+{% admonition(type="warning", title="基础信息") %}
 
 - 编程爱好者，后端程序员
 - 爱好广泛地学习各个领域

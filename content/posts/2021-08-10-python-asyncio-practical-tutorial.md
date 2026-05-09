@@ -42,13 +42,9 @@ graph TD;
 
 协程 (Coroutines) 又叫纤程 (Fiber)。我们暂且将协程理解为一种特殊的子程序 (函数)。
 
-{% admonition(type="tip") %}
-
-实际上，上面的那句话是错误的，正确的是：子程序是协程的一种特例。
-
-不过大多数语言都有子程序的概念，但不一定有协程的概念，在 Python 中函数也并不是协程的子类。
-
-{% end %}
+> [!TIP]
+> 实际上，上面的那句话是错误的，正确的是：子程序是协程的一种特例。
+> 不过大多数语言都有子程序的概念，但不一定有协程的概念，在 Python 中函数也并不是协程的子类。
 
 在 Python 中协程用 `async/await` 语法进行声明：
 
@@ -169,11 +165,8 @@ async def main():
 asyncio.run(main())
 ```
 
-{% admonition(type="tip") %}
-
-`asyncio.gather()` 的内部实现和之前的代码并不相同，只是效果类似。
-
-{% end %}
+> [!TIP]
+> `asyncio.gather()` 的内部实现和之前的代码并不相同，只是效果类似。
 
 上面所有例子中的 `asyncio.sleep(1)` 都可以换成真实的 IO 操作，比如下面的使用 `httpx` 库获取网页的例子。
 
@@ -281,11 +274,8 @@ gantt
     - `await` 语句：等待一个协程，等待这个协程返回结果后继续运行下面代码。
     - `asyncio.create_task()` 函数：将一个协程包装为一个任务并且并发地调度协程。
 
-{% admonition(type="note") %}
-
-如果你使用了异步 IO，请尽量在程序的所有地方都使用协程，网络请求等 IO 库也要使用支持异步 IO 的库，如 [aiohttp](https://docs.aiohttp.org/)，[httpx](https://www.python-httpx.org/) 等。
-
-{% end %}
+> [!NOTE]
+> 如果你使用了异步 IO，请尽量在程序的所有地方都使用协程，网络请求等 IO 库也要使用支持异步 IO 的库，如 [aiohttp](https://docs.aiohttp.org/)，[httpx](https://www.python-httpx.org/) 等。
 
 ## 参考
 

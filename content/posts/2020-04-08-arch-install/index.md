@@ -73,11 +73,8 @@ timedatectl set-ntp true
 
 ### 分区与格式化
 
-{% admonition(type="danger") %}
-
-数据无价，请谨慎操作！
-
-{% end %}
+> [!CAUTION]
+> 数据无价，请谨慎操作！
 
 #### 分区
 
@@ -218,11 +215,8 @@ zh_TW.UTF-8 UTF-8
 LANG=en_US.UTF-8
 ```
 
-{% admonition(type="info") %}
-
-不建议在这里直接设置为 `zh_CN.UTF-8`，会造成 TTY 乱码以及一些 log 文件输出错误。
-
-{% end %}
+> [!NOTE]
+> 不建议在这里直接设置为 `zh_CN.UTF-8`，会造成 TTY 乱码以及一些 log 文件输出错误。
 
 ### 设置主机名
 
@@ -500,15 +494,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 
 之后安装 `archlinuxcn-keyring` 包导入 GPG key。
 
-{% admonition(type="info") %}
-
-如果安装 `archlinuxcn-keyring` 失败的话可以在 `/etc/pacman.conf` 最后面添加：
-
-```txt
-SigLevel = Optional TrustAll
-```
-
-{% end %}
+> [!NOTE]
+> 如果安装 `archlinuxcn-keyring` 失败的话可以在 `/etc/pacman.conf` 最后面添加 `SigLevel = Optional TrustAll`。
 
 ### 使用 AUR
 
