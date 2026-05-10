@@ -67,23 +67,23 @@ url = "$BASE_URL/atom.xml"
 
 [[extra.menu]]
 name = "项目"
-url = "$BASE_URL/projects"
+url = "$BASE_URL/projects/"
 
 [[extra.menu]]
 name = "文章"
-url = "$BASE_URL/archive"
+url = "$BASE_URL/archive/"
 
 [[extra.menu]]
 name = "标签"
-url = "$BASE_URL/tags"
+url = "$BASE_URL/tags/"
 
 [[extra.menu]]
 name = "分类"
-url = "$BASE_URL/categories"
+url = "$BASE_URL/categories/"
 
 [[extra.menu]]
 name = "关于"
-url = "$BASE_URL/about"
+url = "$BASE_URL/about/"
 
 
 [extra.footer]
