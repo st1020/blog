@@ -15,15 +15,15 @@ Wir müssen wissen. Wir werden wissen.
 大卫·希尔伯特 (David Hilbert)
 </p>
 
-{% admonition(type="warning", title="基础信息") %}
+{% <admonition type="warning" title="基础信息"> %}
 
 - 编程爱好者，后端程序员
 - 爱好广泛地学习各个领域
 - Github：<https://github.com/st1020>
 
-{% end %}
+{% </admonition> %}
 
-{% admonition(type="tip", title="兴趣爱好") %}
+{% <admonition type="tip" title="兴趣爱好"> %}
 
 - 编程
 - 动漫
@@ -31,9 +31,9 @@ Wir müssen wissen. Wir werden wissen.
 - 摄影
 - 阅读
 
-{% end %}
+{% </admonition> %}
 
-{% admonition(type="note", title="专业知识") %}
+{% <admonition type="note" title="专业知识"> %}
 
 - Python
 - Rust
@@ -43,4 +43,4 @@ Wir müssen wissen. Wir werden wissen.
 - TypeScript / JavaScript
 - Learning...
 
-{% end %}
+{% </admonition> %}

@@ -10,9 +10,9 @@ tags = ["Network", "Proxy"]
 
 或者，我们处于公司的内网，需要访问公共互联网，但是公司的防火墙禁止用户直接访问互联网，公司的网络管理员通常会提供一个代理服务器用于访问。
 
-{% inline_svg() %}
+{% <inline_svg> %}
 ![Inline SVG](network_struct.svg)
-{% end %}
+{% </inline_svg> %}
 
 ## 准备
 
@@ -30,9 +30,9 @@ OSI 模型将通讯系统中的数据流划分为了七个层：
 - L2 数据链路层：设备点对点的网络寻址、错误检测和错误控制。
 - L1 物理层：参与数据传输的物理设备。
 
-{% inline_svg() %}
+{% <inline_svg> %}
 ![Inline SVG](osi.svg)
-{% end %}
+{% </inline_svg> %}
 
 上图描述了 OSI 七个层在常见应用场景下的对应的协议和在终端设备（PC）上的常见实现。
 
@@ -234,9 +234,9 @@ FakeIP 是 IETF 在 [RFC 3089](https://datatracker.ietf.org/doc/html/rfc3089) �
 
 因此，如果优先考虑正确性，最终完整的方案如下：
 
-{% inline_svg() %}
+{% <inline_svg> %}
 ![Inline SVG](flow.svg)
-{% end %}
+{% </inline_svg> %}
 
 实际上，假设域名列表足够准确，我们应该极少遇到未知域名指向安全 IP 的情况，因此，完全可以选择未知域名一律走 FakeIP，以获得最佳的性能。
 

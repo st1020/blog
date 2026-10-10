@@ -38,9 +38,9 @@ apt install pandoc typst
 
 一图胜千言，下面是整个 Markdown to Typst 需要用到的文件和工作流：
 
-{% inline_svg() %}
+{% <inline_svg> %}
 ![Inline SVG](process.svg)
-{% end %}
+{% </inline_svg> %}
 
 文件树：
 
@@ -65,6 +65,8 @@ apt install pandoc typst
 ## 输入
 
 首先，整个工作流的输入的核心自然就是 thesis.md，Markdown 格式的论文：
+
+{% raw %}
 
 ````md
 ---
@@ -150,6 +152,8 @@ fn main() {
 
 这里是附录。
 ````
+
+{% endraw %}
 
 上面基本上是就是普通的 Markdown 语法，但是使用了一些 Pandoc 拓展和自定义拓展。
 

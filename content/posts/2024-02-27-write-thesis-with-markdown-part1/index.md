@@ -133,6 +133,8 @@ Blah blah [@doe99; @smith2000; @smith2004].
 
 做好了上述准备后，是时候开始用 Markdown 编写论文了。
 
+{% raw %}
+
 ```md
 ---
 title: 使用 Markdown 编写论文
@@ -152,6 +154,7 @@ link-bibliography: true
 ::: {custom-style="Title"}
 | Abstract
 :::
+
 This article provides a brief introduction to how to write a paper using Markdown.
 
 **Keywords:** Markdown; Pandoc
@@ -169,6 +172,8 @@ This article provides a brief introduction to how to write a paper using Markdow
 
 <!-- 这里是论文的附录 -->
 ```
+
+{% endraw %}
 
 上面的摘要标题使用了 [custom-style](https://pandoc.org/MANUAL.html#output) 而非直接使用 `##` 标题是为了防止被自动编号。使用 `{.unnumbered}` 尽管可以实现标题不会被编号，但是下一个标题的编号仍然会算上这个标题继续编号，所以使用了 `custom-style` 直接指定 Word 样式。
 
